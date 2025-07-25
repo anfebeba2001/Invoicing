@@ -47,11 +47,14 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const credentials = {
-        username: this.loginForm.value.email,
+        email: this.loginForm.value.email,
         password: this.loginForm.value.password
       };
       this.authService.login(credentials).subscribe({
-        next: (response) => console.log('Login exitoso!', response),
+        next: (response) => {
+          console.log('Login exitoso!', response);
+          this.router.navigate(['/dashboard/sales-history']); 
+        },
         error: (err) => console.error('Error en el login', err)
       });
     }
