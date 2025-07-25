@@ -27,7 +27,11 @@ public class Product {
     @Column(name = "entry_date", nullable = false)
     private LocalDate entryDate;
 
+    @Column(nullable = false)
     private String manufacturer;
+
+    @Column(nullable = false)
+    private int amountInStock;
 
     @Column(nullable = false)
     private BigDecimal price;

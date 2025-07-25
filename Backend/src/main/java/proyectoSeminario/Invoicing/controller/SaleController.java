@@ -1,10 +1,9 @@
 package proyectoSeminario.Invoicing.controller;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import proyectoSeminario.Invoicing.dto.CreateSaleRequest;
-import proyectoSeminario.Invoicing.model.Sale;
-import proyectoSeminario.Invoicing.service.SaleService;
+import proyectoSeminario.Invoicing.dto.SaleDTOResponse;
+import proyectoSeminario.Invoicing.service.SaleServiceReading;
 
 import java.util.List;
 
@@ -12,20 +11,23 @@ import java.util.List;
 @RequestMapping("/v1/api/sales")
 public class SaleController {
 
-    private final SaleService saleService;
+    private final SaleServiceReading saleServiceReading;
+    private final SaleServiceCreating saleServiceCreating;
 
-    public SaleController(SaleService saleService) {
-        this.saleService = saleService;
+    public SaleController(SaleServiceReading saleServiceReading) {
+        this.saleServiceReading = saleServiceReading;
     }
 
     @GetMapping
-    public List<Sale> getAllSales() {
-        return saleService.getAllSales();
+    public ResponseEntity<List<SaleDTOResponse>> getAllProducts() {
+        List<SaleDTOResponse> responseList = saleServiceReading.findAll();
+        return ResponseEntity.ok(responseList);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Sale createSale(@RequestBody CreateSaleRequest request) {
-        return saleService.createSale(request);
+    @GetMapping("/{id}")
+    public ResponseEntity<SaleDTOResponse> getProductById(@PathVariable Long id) {
+        return saleServiceReading.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
