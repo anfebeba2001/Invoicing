@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Facturación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        #addSaleModal {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+        }
+        #addSaleModal.is-active {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Historial de Ventas</h1>
+            <div class="w-full sm:w-auto flex items-center space-x-4">
+                <div class="relative w-full sm:w-64">
+                    <i class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+                <button id="addSaleBtn" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-sm whitespace-nowrap">
+                    <i class="fa fa-plus mr-2"></i>Añadir Venta
+                </button>
+            </div>
+        </header>
+        <main class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Fecha</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Cliente</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Productos</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesTableBody" class="divide-y divide-gray-200">
+                        <tr>
+                            <td colspan="4" class="text-center p-8">
+                                <div class="text-gray-500">Cargando datos...</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <div id="addSaleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center p-5 border-b">
+                <h2 class="text-xl font-bold">Registrar Nueva Venta</h2>
+                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <form id="addSaleForm" class="p-6 flex-grow overflow-y-auto">
+                <div class="mb-6">
+                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-1">Nombre del Cliente</label>
+                    <input type="text" id="customerName" name="customerName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ej: Andrés Bejarano">
+                </div>
+                <h3 class="text-lg font-semibold mb-3">Productos</h3>
+                <div id="productEntriesContainer" class="space-y-4"></div>
+                <button type="button" id="addProductEntryBtn" class="mt-4 text-blue-600 font-semibold hover:text-blue-800 transition">
+                    <i class="fa fa-plus-circle mr-2"></i>Añadir otro producto
+                </button>
+            </form>
+            <div class="flex justify-end items-center p-5 border-t bg-gray-50 rounded-b-xl">
+                 <div id="form-error" class="text-red-500 mr-4 text-sm"></div>
+                <button type="button" id="cancelModalBtn" class="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancelar</button>
+                <button type="submit" form="addSaleForm" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Guardar Venta</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const App = {
+            state: {
+                sales: [],
+                availableProducts: [],
+            },
+            api: {
+                BASE_URL: 'http://localhost:8080/v1/api',
+                async fetchSales() {
+                    const response = await fetch(`${this.BASE_URL}/sales`);
+                    if (!response.ok) throw new Error('No se pudo cargar las ventas.');
+                    return await response.json();
+                },
+                async fetchProducts() {
+                    const response = await fetch(`${this.BASE_URL}/products`);
+                    if (!response.ok) throw new Error('No se pudo cargar los productos.');
+                    return await response.json();
+                },
+                async createSale(saleData) {
+                    const response = await fetch(`${this.BASE_URL}/sales`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(saleData),
+                    });
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        throw new Error(`Error del servidor: ${errorText}`);
+                    }
+                    return await response.text();
+                }
+            },
+            components: {
+                createSaleRow(sale) {
+                    const formatCurrency = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(value);
+                    let productText = 'No hay productos';
+                    if (sale.products && sale.products.length > 0) {
+                        if (sale.products.length === 1) {
+                            productText = sale.products[0].name;
+                        } else {
+                            productText = `${sale.products[0].name} y otros...`;
+                        }
+                    }
+                    return `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">${sale.date}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">${sale.customer}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">${productText}</td>
+                            <td class="px-6 py-4 whitespace-nowrap font-medium">${formatCurrency(sale.totalValue)}</td>
+                        </tr>
+                    `;
+                },
+                createProductEntry() {
+                    const entryId = Date.now();
+                    let productOptions = '<option value="" disabled selected>Seleccione un producto</option>';
+                    App.state.availableProducts.forEach(p => {
+                        productOptions += `<option value="${p.id}">${p.name} - $${p.price}</option>`;
+                    });
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center space-x-3 p-3 bg-gray-50 rounded-lg';
+                    div.setAttribute('data-id', entryId);
+                    div.innerHTML = `
+                        <div class="flex-grow">
+                            <select name="productId" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                ${productOptions}
+                            </select>
+                        </div>
+                        <div class="w-24">
+                            <input type="number" name="quantity" required min="1" placeholder="Cant." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <button type="button" class="text-red-500 hover:text-red-700 transition">
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    `;
+                    div.querySelector('button').addEventListener('click', () => App.handlers.handleRemoveProductEntry(entryId));
+                    return div;
+                }
+            },
+            ui: {
+                elements: {},
+                cacheDOMElements() {
+                    this.elements.salesTableBody = document.getElementById('salesTableBody');
+                    this.elements.addSaleModal = document.getElementById('addSaleModal');
+                    this.elements.addSaleForm = document.getElementById('addSaleForm');
+                    this.elements.productEntriesContainer = document.getElementById('productEntriesContainer');
+                    this.elements.errorDiv = document.getElementById('form-error');
+                    this.elements.addSaleBtn = document.getElementById('addSaleBtn');
+                    this.elements.closeModalBtn = document.getElementById('closeModalBtn');
+                    this.elements.cancelModalBtn = document.getElementById('cancelModalBtn');
+                    this.elements.addProductEntryBtn = document.getElementById('addProductEntryBtn');
+                },
+                renderSalesTable() {
+                    const { salesTableBody } = this.elements;
+                    salesTableBody.innerHTML = '';
+                    if (App.state.sales.length === 0) {
+                        salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-gray-500">No se encontraron ventas.</td></tr>`;
+                        return;
+                    }
+                    const rowsHtml = App.state.sales.map(App.components.createSaleRow).join('');
+                    salesTableBody.innerHTML = rowsHtml;
+                },
+                showModal() {
+                    this.elements.addSaleModal.classList.add('is-active');
+                    if (this.elements.productEntriesContainer.children.length === 0) {
+                        this.elements.productEntriesContainer.appendChild(App.components.createProductEntry());
+                    }
+                },
+                hideModal() {
+                    this.elements.addSaleModal.classList.remove('is-active');
+                    this.elements.addSaleForm.reset();
+                    this.elements.productEntriesContainer.innerHTML = '';
+                    this.elements.errorDiv.textContent = '';
+                },
+                showError(message) {
+                    this.elements.errorDiv.textContent = message;
+                }
+            },
+            handlers: {
+                async handleSaleFormSubmit(event) {
+                    event.preventDefault();
+                    App.ui.showError('');
+                    const formData = new FormData(App.ui.elements.addSaleForm);
+                    const saleData = {
+                        customer: formData.get('customerName'),
+                        products: Array.from(App.ui.elements.productEntriesContainer.children).map(entry => ({
+                            productId: parseInt(entry.querySelector('[name="productId"]').value, 10),
+                            quantity: parseInt(entry.querySelector('[name="quantity"]').value, 10)
+                        }))
+                    };
+                    if (saleData.products.some(p => isNaN(p.productId) || isNaN(p.quantity))) {
+                         App.ui.showError('Por favor, complete todos los campos de producto.');
+                         return;
+                    }
+                    try {
+                        await App.api.createSale(saleData);
+                        App.ui.hideModal();
+                        await App.initData();
+                    } catch (error) {
+                        App.ui.showError(error.message);
+                    }
+                },
+                handleRemoveProductEntry(entryId) {
+                    const entryToRemove = document.querySelector(`div[data-id='${entryId}']`);
+                    if (entryToRemove) entryToRemove.remove();
+                    if (App.ui.elements.productEntriesContainer.children.length === 0) {
+                        App.ui.elements.productEntriesContainer.appendChild(App.components.createProductEntry());
+                    }
+                }
+            },
+            async initData() {
+                try {
+                    const [sales, products] = await Promise.all([
+                        App.api.fetchSales(),
+                        App.api.fetchProducts()
+                    ]);
+                    App.state.sales = sales;
+                    App.state.availableProducts = products;
+                    App.ui.renderSalesTable();
+                } catch (error) {
+                    App.ui.elements.salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-red-500">Error al cargar los datos. Asegúrate de que la API esté funcionando.</td></tr>`;
+                }
+            },
+            init() {
+                App.ui.cacheDOMElements();
+                const { elements } = App.ui;
+                elements.addSaleBtn.addEventListener('click', () => App.ui.showModal());
+                elements.closeModalBtn.addEventListener('click', () => App.ui.hideModal());
+                elements.cancelModalBtn.addEventListener('click', () => App.ui.hideModal());
+                elements.addSaleModal.addEventListener('click', (e) => e.target === elements.addSaleModal && App.ui.hideModal());
+                elements.addProductEntryBtn.addEventListener('click', () => elements.productEntriesContainer.appendChild(App.components.createProductEntry()));
+                elements.addSaleForm.addEventListener('submit', App.handlers.handleSaleFormSubmit);
+                this.initData();
+            }
+        };
+        document.addEventListener('DOMContentLoaded', () => App.init());
+    </script>
+</body>
+</html>
