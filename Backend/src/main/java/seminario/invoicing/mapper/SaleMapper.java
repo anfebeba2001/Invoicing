@@ -1,5 +1,6 @@
 package seminario.invoicing.mapper;
 
+import seminario.invoicing.dto.ProductInfoDTO;
 import seminario.invoicing.dto.SaleDTORequest;
 import seminario.invoicing.dto.SaleDTOResponse;
 import seminario.invoicing.model.Product;
@@ -7,6 +8,7 @@ import seminario.invoicing.model.Sale;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SaleMapper {
 
@@ -19,6 +21,11 @@ public class SaleMapper {
                 .date(sale.getDate())
                 .status(sale.getStatus())
                 .totalValue(sale.getTotalValue())
+                .products(
+                        sale.getProducts().stream()
+                                .map(product -> ProductInfoDTO.builder().name(product.getName()).build())
+                                .collect(Collectors.toList())
+                )
                 .build();
     }
 
