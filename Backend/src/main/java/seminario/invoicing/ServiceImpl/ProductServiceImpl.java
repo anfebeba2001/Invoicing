@@ -3,6 +3,7 @@ package seminario.invoicing.ServiceImpl;
 import org.springframework.stereotype.Service;
 import seminario.invoicing.dto.ProductDTORequest;
 import seminario.invoicing.dto.ProductDTOResponse;
+import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.mapper.ProductMapper;
 import seminario.invoicing.repository.ProductRepository;
 import seminario.invoicing.service.ProductServiceCreating;
@@ -29,10 +30,10 @@ public class ProductServiceImpl implements ProductServiceReading, ProductService
     }
 
     @Override
-    public Optional<ProductDTOResponse> findById(Long id) {
-        return productRepository
-                .findById(id)
-                .map(ProductMapper::entityToResponse);
+    public ProductDTOResponse findById(Long id) {
+        return productRepository.findById(id)
+                .map(ProductMapper::entityToResponse)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found Product for id: " + id));
     }
 
 

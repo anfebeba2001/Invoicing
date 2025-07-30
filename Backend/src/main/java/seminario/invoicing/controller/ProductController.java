@@ -1,5 +1,7 @@
 package seminario.invoicing.controller;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import seminario.invoicing.dto.ProductDTORequest;
@@ -28,20 +30,14 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTOResponse> getProductById(@PathVariable Long id){
-        return productServiceReading.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ProductDTOResponse> getProductById(@PathVariable Long id) {
+        ProductDTOResponse product = productServiceReading.findById(id);
+        return ResponseEntity.ok(product);
     }
 
     @PostMapping
-    public ResponseEntity<String> createProduct(@RequestBody ProductDTORequest productDTORequest) {
-        try{
-            productServiceCreating.create(productDTORequest);
-            return  ResponseEntity.ok().body("OK");
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public ResponseEntity<String> createProduct(@Valid @RequestBody ProductDTORequest productDTORequest) {
+        productServiceCreating.create(productDTORequest);
+        return new ResponseEntity<>("Product Successfully Created", HttpStatus.CREATED);
     }
 }

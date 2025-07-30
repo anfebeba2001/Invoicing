@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Facturación</title>
+    <title>Billing System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,13 +33,13 @@
 <body class="antialiased text-gray-800">
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
         <header class="flex flex-col sm:flex-row justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Historial de Ventas</h1>
+            <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Sales History</h1>
             <div class="w-full sm:w-auto flex items-center space-x-4">
                 <div class="relative w-full sm:w-64">
                     <i class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
                 </div>
                 <button id="addSaleBtn" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-sm whitespace-nowrap">
-                    <i class="fa fa-plus mr-2"></i>Añadir Venta
+                    <i class="fa fa-plus mr-2"></i>Add Sale
                 </button>
             </div>
         </header>
@@ -48,16 +48,16 @@
                 <table class="w-full text-left">
                     <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Fecha</th>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Cliente</th>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Productos</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Customer</th>
+                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Products</th>
                             <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Total</th>
                         </tr>
                     </thead>
                     <tbody id="salesTableBody" class="divide-y divide-gray-200">
                         <tr>
                             <td colspan="4" class="text-center p-8">
-                                <div class="text-gray-500">Cargando datos...</div>
+                                <div class="text-gray-500">Loading data...</div>
                             </td>
                         </tr>
                     </tbody>
@@ -68,24 +68,24 @@
     <div id="addSaleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center p-5 border-b">
-                <h2 class="text-xl font-bold">Registrar Nueva Venta</h2>
+                <h2 class="text-xl font-bold">Register New Sale</h2>
                 <button id="closeModalBtn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
             </div>
             <form id="addSaleForm" class="p-6 flex-grow overflow-y-auto">
                 <div class="mb-6">
-                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-1">Nombre del Cliente</label>
-                    <input type="text" id="customerName" name="customerName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ej: Andrés Bejarano">
+                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                    <input type="text" id="customerName" name="customerName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g.: Andres Bejarano">
                 </div>
-                <h3 class="text-lg font-semibold mb-3">Productos</h3>
+                <h3 class="text-lg font-semibold mb-3">Products</h3>
                 <div id="productEntriesContainer" class="space-y-4"></div>
                 <button type="button" id="addProductEntryBtn" class="mt-4 text-blue-600 font-semibold hover:text-blue-800 transition">
-                    <i class="fa fa-plus-circle mr-2"></i>Añadir otro producto
+                    <i class="fa fa-plus-circle mr-2"></i>Add another product
                 </button>
             </form>
             <div class="flex justify-end items-center p-5 border-t bg-gray-50 rounded-b-xl">
                  <div id="form-error" class="text-red-500 mr-4 text-sm"></div>
-                <button type="button" id="cancelModalBtn" class="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancelar</button>
-                <button type="submit" form="addSaleForm" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Guardar Venta</button>
+                <button type="button" id="cancelModalBtn" class="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancel</button>
+                <button type="submit" form="addSaleForm" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Save Sale</button>
             </div>
         </div>
     </div>
@@ -99,12 +99,12 @@
                 BASE_URL: 'http://localhost:8080/v1/api',
                 async fetchSales() {
                     const response = await fetch(`${this.BASE_URL}/sales`);
-                    if (!response.ok) throw new Error('No se pudo cargar las ventas.');
+                    if (!response.ok) throw new Error('Could not load sales.');
                     return await response.json();
                 },
                 async fetchProducts() {
                     const response = await fetch(`${this.BASE_URL}/products`);
-                    if (!response.ok) throw new Error('No se pudo cargar los productos.');
+                    if (!response.ok) throw new Error('Could not load products.');
                     return await response.json();
                 },
                 async createSale(saleData) {
@@ -115,20 +115,20 @@
                     });
                     if (!response.ok) {
                         const errorText = await response.text();
-                        throw new Error(`Error del servidor: ${errorText}`);
+                        throw new Error(`Server error: ${errorText}`);
                     }
                     return await response.text();
                 }
             },
             components: {
                 createSaleRow(sale) {
-                    const formatCurrency = (value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(value);
-                    let productText = 'No hay productos';
+                    const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(value);
+                    let productText = 'No products';
                     if (sale.products && sale.products.length > 0) {
                         if (sale.products.length === 1) {
                             productText = sale.products[0].name;
                         } else {
-                            productText = `${sale.products[0].name} y otros...`;
+                            productText = `${sale.products[0].name} and others...`;
                         }
                     }
                     return `
@@ -142,7 +142,7 @@
                 },
                 createProductEntry() {
                     const entryId = Date.now();
-                    let productOptions = '<option value="" disabled selected>Seleccione un producto</option>';
+                    let productOptions = '<option value="" disabled selected>Select a product</option>';
                     App.state.availableProducts.forEach(p => {
                         productOptions += `<option value="${p.id}">${p.name} - $${p.price}</option>`;
                     });
@@ -156,7 +156,7 @@
                             </select>
                         </div>
                         <div class="w-24">
-                            <input type="number" name="quantity" required min="1" placeholder="Cant." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <input type="number" name="quantity" required min="1" placeholder="Qty." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                         </div>
                         <button type="button" class="text-red-500 hover:text-red-700 transition">
                             <i class="fa fa-trash-alt"></i>
@@ -183,7 +183,7 @@
                     const { salesTableBody } = this.elements;
                     salesTableBody.innerHTML = '';
                     if (App.state.sales.length === 0) {
-                        salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-gray-500">No se encontraron ventas.</td></tr>`;
+                        salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-gray-500">No sales found.</td></tr>`;
                         return;
                     }
                     const rowsHtml = App.state.sales.map(App.components.createSaleRow).join('');
@@ -218,7 +218,7 @@
                         }))
                     };
                     if (saleData.products.some(p => isNaN(p.productId) || isNaN(p.quantity))) {
-                         App.ui.showError('Por favor, complete todos los campos de producto.');
+                         App.ui.showError('Please complete all product fields.');
                          return;
                     }
                     try {
@@ -247,7 +247,7 @@
                     App.state.availableProducts = products;
                     App.ui.renderSalesTable();
                 } catch (error) {
-                    App.ui.elements.salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-red-500">Error al cargar los datos. Asegúrate de que la API esté funcionando.</td></tr>`;
+                    App.ui.elements.salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-red-500">Error loading data. Make sure the API is running.</td></tr>`;
                 }
             },
             init() {
