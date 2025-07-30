@@ -1,10 +1,13 @@
 package seminario.invoicing.ServiceImpl;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import seminario.invoicing.dto.SaleDTORequest;
 import seminario.invoicing.dto.SaleDTOResponse;
-import seminario.invoicing.dto.SaleProductDetailRequest;
+import seminario.invoicing.dto.SaleProductDetailDTORequest;
 import seminario.invoicing.exceptions.InsufficientStockException;
+import seminario.invoicing.exceptions.NotFountProductException;
+import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.mapper.SaleMapper;
 import seminario.invoicing.model.Product;
 import seminario.invoicing.repository.ProductRepository;
@@ -13,10 +16,8 @@ import seminario.invoicing.service.SaleServiceCreating;
 import seminario.invoicing.service.SaleServiceReading;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -40,20 +41,22 @@ public class SaleServiceImpl implements SaleServiceReading, SaleServiceCreating 
     }
 
     @Override
-    public Optional<SaleDTOResponse> findById(Long id) {
+    public SaleDTOResponse findById(Long id) {
         return saleRepository
                 .findById(id)
-                .map(SaleMapper::entityToResponse);
+                .map(SaleMapper::entityToResponse)
+                .orElseThrow(() -> new ResourceNotFoundException("Could not find Sale with id: " + id));
     }
 
     @Override
-    public void create(SaleDTORequest saleDtoRequest) throws InsufficientStockException, NotFountProduct {
+    @Transactional
+    public void create(SaleDTORequest saleDtoRequest)  {
         Set<Product> saleProducts = new HashSet<>();
         BigDecimal totalValue = BigDecimal.ZERO;
 
-        for (SaleProductDetailRequest detail : saleDtoRequest.getProducts()) {
+        for (SaleProductDetailDTORequest detail : saleDtoRequest.getProducts()) {
             Product product = productRepository.findById(detail.getProductId())
-                    .orElseThrow(() -> new NotFountProduct("not found product with ID:  " + detail.getProductId()));
+                    .orElseThrow(() -> new ResourceNotFoundException("Could not find Product with id:  " + detail.getProductId()));
 
             if (product.getAmountInStock() < detail.getQuantity()) {
                 throw new InsufficientStockException("Insufficient stock for product: " + product.getName());

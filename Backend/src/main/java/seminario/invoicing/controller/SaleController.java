@@ -1,8 +1,8 @@
 package seminario.invoicing.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import seminario.invoicing.ServiceImpl.NotFountProduct;
 import seminario.invoicing.dto.SaleDTORequest;
 import seminario.invoicing.dto.SaleDTOResponse;
 import seminario.invoicing.exceptions.InsufficientStockException;
@@ -31,21 +31,13 @@ public class SaleController {
 
     @GetMapping("/{id}")
     public ResponseEntity<SaleDTOResponse> getSaleById(@PathVariable Long id) {
-        return saleServiceReading.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        SaleDTOResponse sale =  saleServiceReading.findById(id);
+        return ResponseEntity.ok(sale);
     }
 
     @PostMapping
-    public ResponseEntity<String> createProduct(@RequestBody SaleDTORequest saleDTORequest) {
-        try{
-            saleServiceCreating.create(saleDTORequest);
-            return  ResponseEntity.ok().body("OK");
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (InsufficientStockException e) {
-            return ResponseEntity.badRequest().body("not  enough stock for the products in sale");
-        }
+    public ResponseEntity<String> createSale(@RequestBody SaleDTORequest saleDTORequest) {
+        saleServiceCreating.create(saleDTORequest);
+        return new ResponseEntity<>("Sale Successfully Created", HttpStatus.CREATED);
     }
 }

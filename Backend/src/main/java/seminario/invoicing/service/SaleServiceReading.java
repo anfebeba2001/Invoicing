@@ -8,5 +8,5 @@ import java.util.Optional;
 @Service
 public interface SaleServiceReading {
      List<SaleDTOResponse> findAll();
-     Optional<SaleDTOResponse> findById(Long id);
+     SaleDTOResponse findById(Long id);
 }
