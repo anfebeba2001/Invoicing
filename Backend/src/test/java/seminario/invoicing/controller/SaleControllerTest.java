@@ -229,4 +229,27 @@ class SaleControllerTest {
                 .andExpect(content().string("Sale Successfully Created"));
     }
 
+    @Test
+    void createSale_WhenNotValidSale_ShouldReturnBadRequestStatus() throws Exception {
+        //Arrange
+        SaleDTORequest invalidSale = SaleDTORequest.builder()
+                .customer("Sample customer")
+                .build();
+
+        //Act & Assert
+        mockMvc.perform(post("/v1/api/sales")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(invalidSale)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errors.products", is("List of products can not be empty or null")));
+    }
+
+    @Test
+    void createSale_WhenNoJSONBody_ShouldReturnBadRequestStatus() throws Exception {
+        //Act & Assert
+        mockMvc.perform(post("/v1/api/sales")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(""))
+                .andExpect(status().isBadRequest());
+    }
 }

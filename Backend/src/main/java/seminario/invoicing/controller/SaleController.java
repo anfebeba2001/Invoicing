@@ -1,11 +1,11 @@
 package seminario.invoicing.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import seminario.invoicing.dto.SaleDTORequest;
 import seminario.invoicing.dto.SaleDTOResponse;
-import seminario.invoicing.exceptions.InsufficientStockException;
 import seminario.invoicing.service.SaleServiceCreating;
 import seminario.invoicing.service.SaleServiceReading;
 
@@ -36,7 +36,7 @@ public class SaleController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createSale(@RequestBody SaleDTORequest saleDTORequest) {
+    public ResponseEntity<String> createSale(@Valid @RequestBody SaleDTORequest saleDTORequest) {
         saleServiceCreating.create(saleDTORequest);
         return new ResponseEntity<>("Sale Successfully Created", HttpStatus.CREATED);
     }

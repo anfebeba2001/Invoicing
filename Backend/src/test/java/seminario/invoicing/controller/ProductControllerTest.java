@@ -191,4 +191,13 @@ class ProductControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors.name", is("Name can not be empty or null.")));
     }
+
+    @Test
+    void createProduct_WhenNoJSONBody_ShouldReturnBadRequestStatus() throws Exception {
+        //Act & Assert
+        mockMvc.perform(post("/v1/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(""))
+                .andExpect(status().isBadRequest());
+    }
 }
