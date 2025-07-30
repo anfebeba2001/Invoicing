@@ -6,7 +6,6 @@ import seminario.invoicing.dto.SaleDTORequest;
 import seminario.invoicing.dto.SaleDTOResponse;
 import seminario.invoicing.dto.SaleProductDetailDTORequest;
 import seminario.invoicing.exceptions.InsufficientStockException;
-import seminario.invoicing.exceptions.NotFountProductException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.mapper.SaleMapper;
 import seminario.invoicing.model.Product;

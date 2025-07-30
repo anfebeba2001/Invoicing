@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import seminario.invoicing.exceptions.InsufficientStockException;
+import seminario.invoicing.exceptions.RepeatedDataRequestException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 
 import java.time.LocalDateTime;
@@ -52,7 +53,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
+        ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
@@ -67,13 +68,26 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InsufficientStockException.class)
-    public ResponseEntity<Object> handleInsufficientStockException(InsufficientStockException ex) {
+    public ResponseEntity<Object> handleInsufficientStockException() {
         Map<String, Object> body = new HashMap<>();
         String message = "Insufficient Stock for product";
 
         body.put(TIMESTAMP, LocalDateTime.now());
         body.put(STATUS, HttpStatus.BAD_REQUEST.value());
         body.put(ERROR, "InsufficientStockException");
+        body.put(MESSAGE, message);
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RepeatedDataRequestException.class)
+    public ResponseEntity<Object> handleRepeatedDataRequestException(RepeatedDataRequestException ex) {
+        Map<String, Object> body = new HashMap<>();
+        String message = "This request can not be processed since is repeated in the dataBase ... " +  ex.getMessage();
+
+        body.put(TIMESTAMP, LocalDateTime.now());
+        body.put(STATUS, HttpStatus.BAD_REQUEST.value());
+        body.put(ERROR, "RepeatedDataRequestException");
         body.put(MESSAGE, message);
 
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);

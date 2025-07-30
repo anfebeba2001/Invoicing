@@ -3,6 +3,7 @@ package seminario.invoicing.ServiceImpl;
 import org.springframework.stereotype.Service;
 import seminario.invoicing.dto.ProductDTORequest;
 import seminario.invoicing.dto.ProductDTOResponse;
+import seminario.invoicing.exceptions.RepeatedDataRequestException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.mapper.ProductMapper;
 import seminario.invoicing.repository.ProductRepository;
@@ -39,6 +40,10 @@ public class ProductServiceImpl implements ProductServiceReading, ProductService
 
     @Override
     public void create(ProductDTORequest productDTORequest) {
+
+        if (productRepository.existsByName(productDTORequest.getName()))
+            throw new RepeatedDataRequestException("Product name is already exists");
+
         productRepository.save(
             ProductMapper.requestToEntity(
                     productDTORequest

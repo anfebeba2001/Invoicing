@@ -53,29 +53,6 @@ class SaleControllerTest {
         public SaleServiceCreating saleServiceCreating() {
             return mock(SaleServiceCreating.class);
         }
-
-        /*
-
-    @GetMapping("/{id}")
-    public ResponseEntity<SaleDTOResponse> getSaleById(@PathVariable Long id) {
-        return saleServiceReading.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public ResponseEntity<String> createProduct(@RequestBody SaleDTORequest saleDTORequest) {
-        try{
-            saleServiceCreating.create(saleDTORequest);
-            return  ResponseEntity.ok().body("OK");
-        }
-        catch (Exception e){
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (InsufficientStockException e) {
-            return ResponseEntity.badRequest().body("not  enough stock for the products in sale");
-        }
-    }
-        * */
     }
 
     @Test
@@ -252,4 +229,37 @@ class SaleControllerTest {
                         .content(""))
                 .andExpect(status().isBadRequest());
     }
+    @Test
+    void  createSale_WhenInsufficientStock_ShouldReturnBadRequestStatus() throws Exception {
+        //Arrange
+
+        SaleProductDetailDTORequest validSaleProductDetailDTORequest = SaleProductDetailDTORequest.builder()
+                .productId(1L)
+                .quantity(2)
+                .build();
+
+        SaleProductDetailDTORequest validSaleProductDetailDTORequest2 = SaleProductDetailDTORequest.builder()
+                .productId(12L)
+                .quantity(22)
+                .build();
+
+        SaleDTORequest validSale = SaleDTORequest.builder()
+                .customer("Sample customer")
+                .products(List.of(validSaleProductDetailDTORequest,validSaleProductDetailDTORequest2))
+                .build();
+
+        String errorMessage = "Insufficient Stock for product";
+        // Mocking
+
+        doThrow(new InsufficientStockException(errorMessage)).when(saleServiceCreating).create(validSale);
+
+        //Act & Assert
+        mockMvc.perform(post("/v1/api/sales")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(validSale)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error", is("InsufficientStockException")))
+                .andExpect(jsonPath("$.message", is(errorMessage)));
+    }
+
 }
