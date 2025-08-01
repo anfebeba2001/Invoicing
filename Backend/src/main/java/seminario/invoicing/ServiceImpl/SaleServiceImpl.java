@@ -66,7 +66,6 @@ public class SaleServiceImpl implements SaleServiceReading, SaleServiceCreating 
             saleProducts.add(product);
         }
 
-
         saleRepository.save(
                 SaleMapper.requestToEntity(saleDtoRequest, saleProducts, totalValue.intValue())
         );

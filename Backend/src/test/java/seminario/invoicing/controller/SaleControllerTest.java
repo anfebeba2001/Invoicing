@@ -162,8 +162,7 @@ class SaleControllerTest {
         String expectedMessage = "Not found sale with ID: " + productId;
 
         // Mock:
-        when(saleServiceReading.findById(productId))
-                .thenThrow(new ResourceNotFoundException(expectedMessage));
+        doThrow(new ResourceNotFoundException(expectedMessage)).when(saleServiceReading).findById(productId);
 
         // Act & Assert
         mockMvc.perform(get("/v1/api/sales/{id}", productId)

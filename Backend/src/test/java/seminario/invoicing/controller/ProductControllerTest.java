@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import seminario.invoicing.dto.ProductDTORequest;
 import seminario.invoicing.dto.ProductDTOResponse;
+import seminario.invoicing.exceptions.RepeatedDataRequestException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.service.ProductServiceCreating;
 import seminario.invoicing.service.ProductServiceReading;
@@ -70,7 +71,7 @@ class ProductControllerTest {
         String expectedJson = objectMapper.writeValueAsString(allProducts);
 
         // Mock
-        when(productServiceReading.findAll()).thenReturn(allProducts);
+        doReturn(allProducts).when(productServiceReading).findAll();
 
         // Act & Assert
         this.mockMvc.perform(get("/v1/api/products"))
@@ -85,7 +86,7 @@ class ProductControllerTest {
         String expectedJson = objectMapper.writeValueAsString(List.of());
 
         // Mock
-        when(productServiceReading.findAll()).thenReturn(List.of());
+        doReturn(List.of()).when(productServiceReading).findAll();
 
         // Act & Assert
         this.mockMvc.perform(get("/v1/api/products"))
@@ -109,7 +110,8 @@ class ProductControllerTest {
         String expectedJson = objectMapper.writeValueAsString(product);
 
         // Mock
-        when(productServiceReading.findById(product.getId())).thenReturn(product);
+        doReturn(product).when(productServiceReading).findById(product.getId());
+
         // Act & Assert
         this.mockMvc.perform(get("/v1/api/products/" + product.getId()))
                 .andExpect(status().isOk())
@@ -124,8 +126,7 @@ class ProductControllerTest {
         String expectedMessage = "Not found product with ID: " + productId;
 
         // Mock:
-        when(productServiceReading.findById(productId))
-                .thenThrow(new ResourceNotFoundException(expectedMessage));
+        doThrow(new ResourceNotFoundException(expectedMessage)).when(productServiceReading).findById(productId);
 
         // Act & Assert
         mockMvc.perform(get("/v1/api/products/{id}", productId)
@@ -199,5 +200,27 @@ class ProductControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(""))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void createProduct_whenRepeatedProduct_shouldReturnRepeatedRequestException() throws Exception {
+        //Arrange
+        ProductDTORequest validRequest = ProductDTORequest.builder()
+                .name("Product 1")
+                .manufacturer("Manufacturer")
+                .price(BigDecimal.valueOf(10))
+                .amountInStock(30)
+                .build();
+
+        //Mocking
+        doThrow(new RepeatedDataRequestException("Product name is already exists")).when(productServiceCreating).create(validRequest);
+
+        // Act & Assert:
+        mockMvc.perform(post("/v1/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(validRequest)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error", is("RepeatedDataRequestException")))
+                .andExpect(jsonPath("$.message", is("This request can not be processed since is repeated in the dataBase ... Product name is already exists")));
     }
 }
