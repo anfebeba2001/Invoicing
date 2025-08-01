@@ -8,7 +8,6 @@ import seminario.invoicing.model.Sale;
 
 import java.time.LocalDate;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class SaleMapper {
 
@@ -24,7 +23,7 @@ public class SaleMapper {
                 .products(
                         sale.getProducts().stream()
                                 .map(product -> ProductInfoDTO.builder().name(product.getName()).build())
-                                .collect(Collectors.toList())
+                                .toList()
                 )
                 .build();
     }
