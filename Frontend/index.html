@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,247 +18,185 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
-        #addSaleModal {
+        .modal {
             visibility: hidden;
             opacity: 0;
             transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
         }
-        #addSaleModal.is-active {
+        .modal.is-active {
             visibility: visible;
             opacity: 1;
             transition-delay: 0s;
         }
+        /* --- ESTILOS PARA LA NOTIFICACIÓN (BURBUJA) --- */
+        #toast-container {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .toast {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            color: white;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .toast.error { background-color: #ef4444; } /* Rojo */
+        .toast.success { background-color: #22c55e; } /* Verde */
+        .toast-icon {
+            font-size: 1.25rem;
+            margin-right: 0.75rem;
+        }
     </style>
 </head>
-<body class="antialiased text-gray-800">
+<body class="antialiased text-gray-800 text-sm">
+    <div id="toast-container"></div>
+
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-        <header class="flex flex-col sm:flex-row justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Sales History</h1>
-            <div class="w-full sm:w-auto flex items-center space-x-4">
-                <div class="relative w-full sm:w-64">
-                    <i class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                </div>
-                <button id="addSaleBtn" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-sm whitespace-nowrap">
-                    <i class="fa fa-plus mr-2"></i>Add Sale
-                </button>
+        <header class="text-center mb-8"><h1 class="text-3xl font-bold text-gray-900">System Dashboard</h1></header>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+                <div class="flex justify-between items-center mb-4"><h2 class="text-xl font-bold text-gray-900">Sales History</h2><button id="addSaleBtn" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow-sm whitespace-nowrap"><i class="fa fa-plus mr-2"></i>Add Sale</button></div>
+                <main class="bg-white rounded-xl shadow-md overflow-hidden"><div class="overflow-x-auto"><table class="w-full text-left"><thead class="bg-gray-50 border-b border-gray-200"><tr><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Date</th><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Customer</th><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Products</th><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Total</th></tr></thead><tbody id="salesTableBody" class="divide-y divide-gray-200"></tbody></table></div></main>
             </div>
-        </header>
-        <main class="bg-white rounded-xl shadow-md overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead class="bg-gray-50 border-b border-gray-200">
-                        <tr>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Date</th>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Customer</th>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Products</th>
-                            <th class="px-6 py-3 text-sm font-semibold text-gray-600 uppercase tracking-wider">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="salesTableBody" class="divide-y divide-gray-200">
-                        <tr>
-                            <td colspan="4" class="text-center p-8">
-                                <div class="text-gray-500">Loading data...</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </main>
-    </div>
-    <div id="addSaleModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center p-5 border-b">
-                <h2 class="text-xl font-bold">Register New Sale</h2>
-                <button id="closeModalBtn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
-            </div>
-            <form id="addSaleForm" class="p-6 flex-grow overflow-y-auto">
-                <div class="mb-6">
-                    <label for="customerName" class="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
-                    <input type="text" id="customerName" name="customerName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g.: Andres Bejarano">
-                </div>
-                <h3 class="text-lg font-semibold mb-3">Products</h3>
-                <div id="productEntriesContainer" class="space-y-4"></div>
-                <button type="button" id="addProductEntryBtn" class="mt-4 text-blue-600 font-semibold hover:text-blue-800 transition">
-                    <i class="fa fa-plus-circle mr-2"></i>Add another product
-                </button>
-            </form>
-            <div class="flex justify-end items-center p-5 border-t bg-gray-50 rounded-b-xl">
-                 <div id="form-error" class="text-red-500 mr-4 text-sm"></div>
-                <button type="button" id="cancelModalBtn" class="bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancel</button>
-                <button type="submit" form="addSaleForm" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Save Sale</button>
+            <div>
+                <div class="flex justify-between items-center mb-4"><h2 class="text-xl font-bold text-gray-900">Product Inventory</h2><div class="flex space-x-2"><button id="restockBtn" class="bg-green-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition shadow-sm whitespace-nowrap"><i class="fa fa-box mr-2"></i>Restock</button><button id="addProductBtn" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition shadow-sm whitespace-nowrap"><i class="fa fa-plus mr-2"></i>Add Product</button></div></div>
+                <main class="bg-white rounded-xl shadow-md overflow-hidden"><div class="overflow-x-auto"><table class="w-full text-left"><thead class="bg-gray-50 border-b border-gray-200"><tr><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Name</th><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Manufacturer</th><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">Price</th><th class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase">In Stock</th></tr></thead><tbody id="productsTableBody" class="divide-y divide-gray-200"></tbody></table></div></main>
             </div>
         </div>
     </div>
+
+    <div id="addSaleModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col" onclick="event.stopPropagation()"><div class="flex justify-between items-center p-5 border-b"><h2 class="text-xl font-bold">Register New Sale</h2><button class="close-modal-btn text-gray-500 hover:text-gray-800 text-2xl">&times;</button></div><form id="addSaleForm" class="p-6 flex-grow overflow-y-auto"><div class="mb-6"><label for="customerName" class="block text-sm font-medium text-gray-700 mb-1">Customer Name</label><input type="text" id="customerName" name="customerName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g.: Andres Bejarano"></div><h3 class="text-lg font-semibold mb-3">Products</h3><div id="productEntriesContainer" class="space-y-4"></div><button type="button" id="addProductEntryBtn" class="mt-4 text-blue-600 font-semibold hover:text-blue-800 transition"><i class="fa fa-plus-circle mr-2"></i>Add another product</button></form><div class="flex justify-end items-center p-5 border-t bg-gray-50 rounded-b-xl"><button type="button" class="cancel-modal-btn bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancel</button><button type="submit" form="addSaleForm" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Save Sale</button></div></div>
+    </div>
+    <div id="addProductModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg flex flex-col" onclick="event.stopPropagation()"><div class="flex justify-between items-center p-5 border-b"><h2 class="text-xl font-bold">Add New Product</h2><button class="close-modal-btn text-gray-500 hover:text-gray-800 text-2xl">&times;</button></div><form id="addProductForm" class="p-6 space-y-4"><div><label class="block text-sm font-medium text-gray-700 mb-1">Name</label><input type="text" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., Teclado Mecánico"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Manufacturer</label><input type="text" name="manufacturer" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., Keychron"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Price</label><input type="number" name="price" required min="0" step="1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., 150000"></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Amount in Stock</label><input type="number" name="amountInStock" required min="0" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., 50"></div></form><div class="flex justify-end items-center p-5 border-t bg-gray-50 rounded-b-xl"><button type="button" class="cancel-modal-btn bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancel</button><button type="submit" form="addProductForm" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition">Save Product</button></div></div>
+    </div>
+    <div id="restockModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg flex flex-col" onclick="event.stopPropagation()"><div class="flex justify-between items-center p-5 border-b"><h2 class="text-xl font-bold">Restock Product</h2><button class="close-modal-btn text-gray-500 hover:text-gray-800 text-2xl">&times;</button></div><form id="restockForm" class="p-6 space-y-4"><div><label class="block text-sm font-medium text-gray-700 mb-1">Product</label><select name="productId" id="restockProductSelect" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></select></div><div><label class="block text-sm font-medium text-gray-700 mb-1">Quantity to Add</label><input type="number" name="amount" required min="1" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E.g., 25"></div></form><div class="flex justify-end items-center p-5 border-t bg-gray-50 rounded-b-xl"><button type="button" class="cancel-modal-btn bg-gray-200 text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-300 transition mr-3">Cancel</button><button type="submit" form="restockForm" class="bg-green-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-green-700 transition">Restock</button></div></div>
+    </div>
+
     <script>
         const App = {
-            state: {
-                sales: [],
-                availableProducts: [],
-            },
+            state: { sales: [], availableProducts: [] },
             api: {
                 BASE_URL: 'http://localhost:8080/v1/api',
-                async fetchSales() {
-                    const response = await fetch(`${this.BASE_URL}/sales`);
-                    if (!response.ok) throw new Error('Could not load sales.');
+                async fetchData(endpoint) {
+                    const response = await fetch(`${this.BASE_URL}/${endpoint}`);
+                    if (!response.ok) throw new Error(`Could not load ${endpoint}.`);
                     return await response.json();
                 },
-                async fetchProducts() {
-                    const response = await fetch(`${this.BASE_URL}/products`);
-                    if (!response.ok) throw new Error('Could not load products.');
-                    return await response.json();
-                },
-                async createSale(saleData) {
-                    const response = await fetch(`${this.BASE_URL}/sales`, {
-                        method: 'POST',
+                // --- INICIO: FUNCIÓN CORREGIDA PARA ENVIAR DATOS Y MANEJAR ERRORES ---
+                async sendData(endpoint, data, method = 'POST') {
+                    const response = await fetch(`${this.BASE_URL}/${endpoint}`, {
+                        method: method,
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(saleData),
+                        body: JSON.stringify(data),
                     });
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`Server error: ${errorText}`);
+
+                    if (response.ok) {
+                        return (await response.text()) || 'Operation successful!';
                     }
-                    return await response.text();
+
+                    const contentType = response.headers.get("content-type");
+                    let errorMessage = 'An unknown server error occurred.';
+                    
+                    if (contentType && contentType.includes("application/json")) {
+                        const errorJson = await response.json();
+                        errorMessage = errorJson.message || errorMessage;
+                    } else {
+                        const errorText = await response.text();
+                        errorMessage = errorText || errorMessage;
+                    }
+                    throw new Error(errorMessage);
                 }
+                // --- FIN: FUNCIÓN CORREGIDA ---
             },
             components: {
-                createSaleRow(sale) {
-                    const formatCurrency = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }).format(value);
-                    let productText = 'No products';
-                    if (sale.products && sale.products.length > 0) {
-                        if (sale.products.length === 1) {
-                            productText = sale.products[0].name;
-                        } else {
-                            productText = `${sale.products[0].name} and others...`;
-                        }
-                    }
-                    return `
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap">${sale.date}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">${sale.customer}</td>
-                            <td class="px-6 py-4 whitespace-nowrap">${productText}</td>
-                            <td class="px-6 py-4 whitespace-nowrap font-medium">${formatCurrency(sale.totalValue)}</td>
-                        </tr>
-                    `;
-                },
-                createProductEntry() {
-                    const entryId = Date.now();
-                    let productOptions = '<option value="" disabled selected>Select a product</option>';
-                    App.state.availableProducts.forEach(p => {
-                        productOptions += `<option value="${p.id}">${p.name} - $${p.price}</option>`;
-                    });
-                    const div = document.createElement('div');
-                    div.className = 'flex items-center space-x-3 p-3 bg-gray-50 rounded-lg';
-                    div.setAttribute('data-id', entryId);
-                    div.innerHTML = `
-                        <div class="flex-grow">
-                            <select name="productId" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                ${productOptions}
-                            </select>
-                        </div>
-                        <div class="w-24">
-                            <input type="number" name="quantity" required min="1" placeholder="Qty." class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        </div>
-                        <button type="button" class="text-red-500 hover:text-red-700 transition">
-                            <i class="fa fa-trash-alt"></i>
-                        </button>
-                    `;
-                    div.querySelector('button').addEventListener('click', () => App.handlers.handleRemoveProductEntry(entryId));
-                    return div;
-                }
+                createSaleRow(sale) { return `<tr class="hover:bg-gray-50"><td class="px-4 py-3">${sale.date}</td><td class="px-4 py-3">${sale.customer}</td><td class="px-4 py-3">${sale.products?.length?(sale.products.length===1?sale.products[0].name:`${sale.products[0].name} and others...`):"No products"}</td><td class="px-4 py-3 font-medium">${new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:0,maximumFractionDigits:0}).format(sale.totalValue)}</td></tr>` },
+                createProductRow(product) { return `<tr class="hover:bg-gray-50"><td class="px-4 py-3 font-medium">${product.name}</td><td class="px-4 py-3">${product.manufacturer}</td><td class="px-4 py-3">${new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",minimumFractionDigits:0,maximumFractionDigits:0}).format(product.price)}</td><td class="px-4 py-3">${product.amountInStock}</td></tr>` },
+                createProductEntry() { const e=Date.now();let t='<option value="" disabled selected>Select a product</option>';return App.state.availableProducts.forEach(e=>{t+=`<option value="${e.id}">${e.name} - $${Math.floor(e.price)}</option>`}),(div=document.createElement("div")).className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg",div.setAttribute("data-id",e),div.innerHTML=`<div class="flex-grow"><select name="productId" required class="w-full px-3 py-2 border border-gray-300 rounded-lg">${t}</select></div><div class="w-24"><input type="number" name="quantity" required min="1" placeholder="Qty." class="w-full px-3 py-2 border border-gray-300 rounded-lg"></div><button type="button" class="text-red-500 hover:text-red-700"><i class="fa fa-trash-alt"></i></button>`,div.querySelector("button").addEventListener("click",()=>App.handlers.handleRemoveProductEntry(e)),div; var div }
             },
             ui: {
                 elements: {},
                 cacheDOMElements() {
-                    this.elements.salesTableBody = document.getElementById('salesTableBody');
-                    this.elements.addSaleModal = document.getElementById('addSaleModal');
-                    this.elements.addSaleForm = document.getElementById('addSaleForm');
-                    this.elements.productEntriesContainer = document.getElementById('productEntriesContainer');
-                    this.elements.errorDiv = document.getElementById('form-error');
-                    this.elements.addSaleBtn = document.getElementById('addSaleBtn');
-                    this.elements.closeModalBtn = document.getElementById('closeModalBtn');
-                    this.elements.cancelModalBtn = document.getElementById('cancelModalBtn');
-                    this.elements.addProductEntryBtn = document.getElementById('addProductEntryBtn');
+                    const ids = ['toast-container', 'salesTableBody', 'productsTableBody', 'addSaleModal', 'addProductModal', 'restockModal', 'addSaleForm', 'addProductForm', 'restockForm', 'productEntriesContainer', 'addSaleBtn', 'addProductBtn', 'restockBtn', 'addProductEntryBtn', 'restockProductSelect'];
+                    ids.forEach(id => this.elements[id] = document.getElementById(id));
+                    this.elements.closeModalBtns = document.querySelectorAll('.close-modal-btn');
+                    this.elements.cancelModalBtns = document.querySelectorAll('.cancel-modal-btn');
                 },
-                renderSalesTable() {
-                    const { salesTableBody } = this.elements;
-                    salesTableBody.innerHTML = '';
-                    if (App.state.sales.length === 0) {
-                        salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-gray-500">No sales found.</td></tr>`;
-                        return;
-                    }
-                    const rowsHtml = App.state.sales.map(App.components.createSaleRow).join('');
-                    salesTableBody.innerHTML = rowsHtml;
+                renderTable(tableBody, items, rowComponent, noDataMessage) { tableBody.innerHTML="",items.length?tableBody.innerHTML=items.map(rowComponent).join(""):tableBody.innerHTML=`<tr><td colspan="4" class="text-center p-8 text-gray-500">${noDataMessage}</td></tr>` },
+                toggleModal(modal, show) {
+                    if (show) modal.classList.add('is-active');
+                    else modal.classList.remove('is-active');
                 },
-                showModal() {
-                    this.elements.addSaleModal.classList.add('is-active');
-                    if (this.elements.productEntriesContainer.children.length === 0) {
-                        this.elements.productEntriesContainer.appendChild(App.components.createProductEntry());
-                    }
-                },
-                hideModal() {
-                    this.elements.addSaleModal.classList.remove('is-active');
-                    this.elements.addSaleForm.reset();
-                    this.elements.productEntriesContainer.innerHTML = '';
-                    this.elements.errorDiv.textContent = '';
-                },
-                showError(message) {
-                    this.elements.errorDiv.textContent = message;
+                populateRestockDropdown() { const e=this.elements.restockProductSelect;e.innerHTML='<option value="" disabled selected>Select a product to restock</option>',App.state.availableProducts.forEach(t=>{e.innerHTML+=`<option value="${t.id}">${t.name} (Current: ${t.amountInStock})</option>`}) },
+                showToast(message, type = 'error') {
+                    const container = this.elements.toastContainer;
+                    const toast = document.createElement('div');
+                    toast.className = `toast ${type}`;
+                    toast.innerHTML = `<i class="toast-icon fa ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i><span>${message}</span>`;
+                    
+                    container.appendChild(toast);
+                    
+                    setTimeout(() => toast.classList.add('show'), 10);
+
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                        toast.addEventListener('transitionend', () => toast.remove());
+                    }, 4000);
                 }
             },
             handlers: {
-                async handleSaleFormSubmit(event) {
+                async handleFormSubmit(event, modal, apiCall, getData) {
                     event.preventDefault();
-                    App.ui.showError('');
-                    const formData = new FormData(App.ui.elements.addSaleForm);
-                    const saleData = {
-                        customer: formData.get('customerName'),
-                        products: Array.from(App.ui.elements.productEntriesContainer.children).map(entry => ({
-                            productId: parseInt(entry.querySelector('[name="productId"]').value, 10),
-                            quantity: parseInt(entry.querySelector('[name="quantity"]').value, 10)
-                        }))
-                    };
-                    if (saleData.products.some(p => isNaN(p.productId) || isNaN(p.quantity))) {
-                         App.ui.showError('Please complete all product fields.');
-                         return;
-                    }
                     try {
-                        await App.api.createSale(saleData);
-                        App.ui.hideModal();
+                        const data = getData(event.target);
+                        const successMessage = await apiCall(data);
+                        App.ui.toggleModal(modal, false);
+                        App.ui.showToast(successMessage || 'Operation successful!', 'success');
                         await App.initData();
                     } catch (error) {
-                        App.ui.showError(error.message);
+                        App.ui.showToast(error.message, 'error');
                     }
                 },
-                handleRemoveProductEntry(entryId) {
-                    const entryToRemove = document.querySelector(`div[data-id='${entryId}']`);
-                    if (entryToRemove) entryToRemove.remove();
-                    if (App.ui.elements.productEntriesContainer.children.length === 0) {
-                        App.ui.elements.productEntriesContainer.appendChild(App.components.createProductEntry());
-                    }
-                }
+                handleRemoveProductEntry(entryId) { document.querySelector(`div[data-id='${entryId}']`)?.remove(),App.ui.elements.productEntriesContainer.children.length===0&&App.ui.elements.productEntriesContainer.appendChild(App.components.createProductEntry()) }
             },
-            async initData() {
-                try {
-                    const [sales, products] = await Promise.all([
-                        App.api.fetchSales(),
-                        App.api.fetchProducts()
-                    ]);
-                    App.state.sales = sales;
-                    App.state.availableProducts = products;
-                    App.ui.renderSalesTable();
-                } catch (error) {
-                    App.ui.elements.salesTableBody.innerHTML = `<tr><td colspan="4" class="text-center p-8 text-red-500">Error loading data. Make sure the API is running.</td></tr>`;
-                }
-            },
+            async initData() { try{const[e,t]=await Promise.all([App.api.fetchData("sales"),App.api.fetchData("products")]);App.state.sales=e,App.state.availableProducts=t,App.ui.renderTable(App.ui.elements.salesTableBody,e,App.components.createSaleRow,"No sales found."),App.ui.renderTable(App.ui.elements.productsTableBody,t,App.components.createProductRow,"No products found.")}catch(e){console.error(e),App.ui.elements.salesTableBody.innerHTML=`<tr><td colspan="4" class="text-center p-8 text-red-500">Error loading sales.</td></tr>`,App.ui.elements.productsTableBody.innerHTML=`<tr><td colspan="4" class="text-center p-8 text-red-500">Error loading products.</td></tr>`} },
             init() {
-                App.ui.cacheDOMElements();
-                const { elements } = App.ui;
-                elements.addSaleBtn.addEventListener('click', () => App.ui.showModal());
-                elements.closeModalBtn.addEventListener('click', () => App.ui.hideModal());
-                elements.cancelModalBtn.addEventListener('click', () => App.ui.hideModal());
-                elements.addSaleModal.addEventListener('click', (e) => e.target === elements.addSaleModal && App.ui.hideModal());
-                elements.addProductEntryBtn.addEventListener('click', () => elements.productEntriesContainer.appendChild(App.components.createProductEntry()));
-                elements.addSaleForm.addEventListener('submit', App.handlers.handleSaleFormSubmit);
+                this.ui.cacheDOMElements();
+                const { elements } = this.ui;
+
+                elements.addSaleBtn.addEventListener('click', () => { this.ui.toggleModal(elements.addSaleModal, true); if (elements.productEntriesContainer.children.length === 0) elements.productEntriesContainer.appendChild(this.components.createProductEntry()); });
+                elements.addProductBtn.addEventListener('click', () => this.ui.toggleModal(elements.addProductModal, true));
+                elements.restockBtn.addEventListener('click', () => { this.ui.populateRestockDropdown(); this.ui.toggleModal(elements.restockModal, true); });
+
+                const allModals = [elements.addSaleModal, elements.addProductModal, elements.restockModal];
+                elements.closeModalBtns.forEach(btn => btn.addEventListener('click', () => allModals.forEach(m => this.ui.toggleModal(m, false))));
+                elements.cancelModalBtns.forEach(btn => btn.addEventListener('click', () => allModals.forEach(m => this.ui.toggleModal(m, false))));
+                allModals.forEach(m => m.addEventListener('click', (e) => e.target === m && this.ui.toggleModal(m, false)));
+
+                elements.addSaleForm.addEventListener('submit', (e) => this.handlers.handleFormSubmit(e, elements.addSaleModal, (data) => this.api.sendData('sales', data, 'POST'), form => {
+                    const saleData = { customer: new FormData(form).get('customerName'), products: Array.from(elements.productEntriesContainer.children).map(entry => ({ productId: parseInt(entry.querySelector('[name="productId"]').value, 10), quantity: parseInt(entry.querySelector('[name="quantity"]').value, 10) })) };
+                    if (saleData.products.some(p => isNaN(p.productId) || isNaN(p.quantity))) throw new Error('Please complete all product fields.');
+                    return saleData;
+                }));
+                elements.addProductForm.addEventListener('submit', (e) => this.handlers.handleFormSubmit(e, elements.addProductModal, (data) => this.api.sendData('products', data, 'POST'), form => Object.fromEntries(new FormData(form))));
+                elements.restockForm.addEventListener('submit', (e) => this.handlers.handleFormSubmit(e, elements.restockModal, (data) => this.api.sendData('products', data, 'PATCH'), form => Object.fromEntries(new FormData(form))));
+
+                elements.addProductEntryBtn.addEventListener('click', () => elements.productEntriesContainer.appendChild(this.components.createProductEntry()));
                 this.initData();
             }
         };
