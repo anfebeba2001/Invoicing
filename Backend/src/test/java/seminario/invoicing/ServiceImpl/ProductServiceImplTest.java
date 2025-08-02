@@ -2,12 +2,14 @@ package seminario.invoicing.ServiceImpl;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.commons.support.Resource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import seminario.invoicing.dto.ProductDTORequest;
 import seminario.invoicing.dto.ProductDTOResponse;
+import seminario.invoicing.dto.ProductRestockRequest;
 import seminario.invoicing.exceptions.RepeatedDataRequestException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.model.Product;
@@ -187,4 +189,42 @@ class ProductServiceImplTest {
         //Assert
         assertEquals(0, actual.size());
     }
+
+    @Test
+    void restock_RestockProduct() {
+        //Arrange
+        ProductRestockRequest productRestockRequest = ProductRestockRequest.builder()
+                .amount(10)
+                .productId(100L)
+                .build();
+        //Mocking
+        Product product = new Product();
+
+        doReturn(Optional.of(product)).when(productRepository).findById(productRestockRequest.getProductId());
+        doReturn(product).when(productRepository).save(any(Product.class));
+        //Act
+        productService.restock(productRestockRequest);
+        //Verify
+        verify(productRepository, times(1)).findById(productRestockRequest.getProductId());
+        verify(productRepository, times(1)).save(any(Product.class));
+    }
+
+
+    @Test
+    void restockShould_ShouldThrowException() {
+        //Arrange
+        ProductRestockRequest productRestockRequest = ProductRestockRequest.builder()
+                .amount(10)
+                .productId(100L)
+                .build();
+        //Mocking
+        doReturn(Optional.empty()).when(productRepository).findById(productRestockRequest.getProductId());
+        //Act
+        ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class,
+                () -> productService.restock(productRestockRequest));
+        //Verify
+       assertNotNull(exception.getMessage());
+       assertEquals("Not found Product for id: " + productRestockRequest.getProductId(), exception.getMessage());
+    }
+
 }
