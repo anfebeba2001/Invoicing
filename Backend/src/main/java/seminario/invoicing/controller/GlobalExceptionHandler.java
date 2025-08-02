@@ -26,28 +26,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Object> handleResourceNotFoundException(ResourceNotFoundException ex) {
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put(TIMESTAMP, LocalDateTime.now());
-        body.put(STATUS, HttpStatus.NOT_FOUND.value());
-        body.put(ERROR, "Resource not found");
-        body.put(MESSAGE, ex.getMessage());
-
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+        return handleExceptions("ResourceNotFound", ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Object> handleTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-
         String message = String.format("Parameter '%s' must be type numeric (Long).", ex.getName());
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put(TIMESTAMP, LocalDateTime.now());
-        body.put(STATUS, HttpStatus.BAD_REQUEST.value());
-        body.put(ERROR, "Invalid parameter type");
-        body.put(MESSAGE, message);
-
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return handleExceptions("InvalidParameterType",message,HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -69,27 +54,29 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(InsufficientStockException.class)
     public ResponseEntity<Object> handleInsufficientStockException() {
-        Map<String, Object> body = new HashMap<>();
         String message = "Insufficient Stock for product";
-
-        body.put(TIMESTAMP, LocalDateTime.now());
-        body.put(STATUS, HttpStatus.BAD_REQUEST.value());
-        body.put(ERROR, "InsufficientStockException");
-        body.put(MESSAGE, message);
-
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return handleExceptions("InsufficientStockException",message,HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(RepeatedDataRequestException.class)
     public ResponseEntity<Object> handleRepeatedDataRequestException(RepeatedDataRequestException ex) {
-        Map<String, Object> body = new HashMap<>();
         String message = "This request can not be processed since is repeated in the dataBase ... " +  ex.getMessage();
+        return handleExceptions("RepeatedDataRequestException",message,HttpStatus.BAD_REQUEST);
+    }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex) {
+        String message = "This request can not be processed since arguments do not match de expectations  ... " +  ex.getMessage();
+        return handleExceptions("IllegalArgumentException",message,HttpStatus.BAD_REQUEST);
+    }
+
+    private ResponseEntity<Object> handleExceptions(String errorName,String message,HttpStatus status){
+        Map<String, Object> body = new HashMap<>();
         body.put(TIMESTAMP, LocalDateTime.now());
-        body.put(STATUS, HttpStatus.BAD_REQUEST.value());
-        body.put(ERROR, "RepeatedDataRequestException");
+        body.put(STATUS,status);
+        body.put(ERROR, errorName);
         body.put(MESSAGE, message);
 
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(body, status);
     }
 }

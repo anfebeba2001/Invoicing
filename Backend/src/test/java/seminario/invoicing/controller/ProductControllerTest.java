@@ -1,5 +1,6 @@
 package seminario.invoicing.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +11,19 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import seminario.invoicing.dto.ProductDTORequest;
 import seminario.invoicing.dto.ProductDTOResponse;
+import seminario.invoicing.dto.ProductRestockRequest;
 import seminario.invoicing.exceptions.RepeatedDataRequestException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.service.ProductServiceCreating;
 import seminario.invoicing.service.ProductServiceReading;
+import seminario.invoicing.service.ProductServiceUpdating;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -42,6 +44,8 @@ class ProductControllerTest {
 
     @Autowired
     private ProductServiceCreating productServiceCreating;
+    @Autowired
+    private ProductServiceUpdating productServiceUpdating;
 
     @TestConfiguration
     static class ControllerTestConfig {
@@ -54,6 +58,11 @@ class ProductControllerTest {
         @Bean
         public ProductServiceCreating productServiceCreating() {
             return mock(ProductServiceCreating.class);
+        }
+
+        @Bean
+        public ProductServiceUpdating productServiceUpdating() {
+            return mock(ProductServiceUpdating.class);
         }
     }
 
@@ -133,8 +142,8 @@ class ProductControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.status", is(404)))
-                .andExpect(jsonPath("$.error", is("Resource not found")))
+                .andExpect(jsonPath("$.status", is("NOT_FOUND")))
+                .andExpect(jsonPath("$.error", is("ResourceNotFound")))
                 .andExpect(jsonPath("$.message", is(expectedMessage)));
     }
 
@@ -150,8 +159,8 @@ class ProductControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.status", is(400)))
-                .andExpect(jsonPath("$.error", is("Invalid parameter type")))
+                .andExpect(jsonPath("$.status", is("BAD_REQUEST")))
+                .andExpect(jsonPath("$.error", is("InvalidParameterType")))
                 .andExpect(jsonPath("$.message", is(expectedMessage)));
     }
 
@@ -223,4 +232,44 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$.error", is("RepeatedDataRequestException")))
                 .andExpect(jsonPath("$.message", is("This request can not be processed since is repeated in the dataBase ... Product name is already exists")));
     }
+
+    @Test
+    void restockProduct_ShouldRestockProduct() throws Exception {
+        //Arrange
+        ProductRestockRequest validRequest = ProductRestockRequest.builder()
+                .productId(1L)
+                .amount(10)
+                .build();
+        //Mocking
+        doNothing().when(productServiceUpdating).restock(validRequest);
+
+        //Act
+        mockMvc.perform(patch("/v1/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(validRequest)))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Product Successfully Restocked"));
+    }
+    @Test
+    void restockProduct_WhenStockNotAsExpected_ShouldThrowException() throws Exception {
+        //Arrange
+        ProductRestockRequest validRequest = ProductRestockRequest.builder()
+                .productId(1L)
+                .amount(10)
+                .build();
+        //Mocking
+        doThrow(new IllegalArgumentException("Stock is way to big :(")).when(productServiceUpdating).restock(any(ProductRestockRequest.class));
+
+        //Act
+        mockMvc.perform(patch("/v1/api/products")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(validRequest)))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.status", is("BAD_REQUEST")))
+                .andExpect(jsonPath("$.error", is("IllegalArgumentException")))
+                .andExpect(jsonPath("$.message", is("This request can not be processed since arguments do not match de expectations  ... Stock is way to big :(")));
+
+    }
+
 }

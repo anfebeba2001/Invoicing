@@ -190,7 +190,7 @@ class SaleServiceImplTest {
         //Verify
         assertNotNull(actual);
         assertEquals(actual.getCustomer(), mockedSale.getCustomer());
-        assertEquals(productForSale2.getName(),actual.getProducts().get(0).getName());
+        assertEquals(productForSale.getName(),actual.getProducts().get(0).getName());
     }
 
     @Test

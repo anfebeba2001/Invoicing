@@ -150,8 +150,8 @@ class SaleControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.status", is(400)))
-                .andExpect(jsonPath("$.error", is("Invalid parameter type")))
+                .andExpect(jsonPath("$.status", is("BAD_REQUEST")))
+                .andExpect(jsonPath("$.error", is("InvalidParameterType")))
                 .andExpect(jsonPath("$.message", is(expectedMessage)));
     }
     @Test
@@ -169,8 +169,8 @@ class SaleControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.status", is(404)))
-                .andExpect(jsonPath("$.error", is("Resource not found")))
+                .andExpect(jsonPath("$.status", is("NOT_FOUND")))
+                .andExpect(jsonPath("$.error", is("ResourceNotFound")))
                 .andExpect(jsonPath("$.message", is(expectedMessage)));
     }
 

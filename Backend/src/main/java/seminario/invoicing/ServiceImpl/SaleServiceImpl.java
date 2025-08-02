@@ -61,9 +61,10 @@ public class SaleServiceImpl implements SaleServiceReading, SaleServiceCreating 
                 throw new InsufficientStockException("Insufficient stock for product: " + product.getName());
             }
 
-            product.setAmountInStock(product.getAmountInStock() - detail.getQuantity());
+            product.modifyStock(-detail.getQuantity());
             totalValue = totalValue.add(product.getPrice().multiply(new BigDecimal(detail.getQuantity())));
             saleProducts.add(product);
+            productRepository.save(product);
         }
 
         saleRepository.save(

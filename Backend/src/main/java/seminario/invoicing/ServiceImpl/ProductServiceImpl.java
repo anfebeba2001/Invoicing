@@ -3,17 +3,22 @@ package seminario.invoicing.ServiceImpl;
 import org.springframework.stereotype.Service;
 import seminario.invoicing.dto.ProductDTORequest;
 import seminario.invoicing.dto.ProductDTOResponse;
+import seminario.invoicing.dto.ProductRestockRequest;
 import seminario.invoicing.exceptions.RepeatedDataRequestException;
 import seminario.invoicing.exceptions.ResourceNotFoundException;
 import seminario.invoicing.mapper.ProductMapper;
+import seminario.invoicing.model.Product;
 import seminario.invoicing.repository.ProductRepository;
 import seminario.invoicing.service.ProductServiceCreating;
 import seminario.invoicing.service.ProductServiceReading;
+import seminario.invoicing.service.ProductServiceUpdating;
 
 import java.util.List;
-import java.util.Optional;
+
 @Service
-public class ProductServiceImpl implements ProductServiceReading, ProductServiceCreating {
+public class ProductServiceImpl implements ProductServiceReading,
+        ProductServiceCreating,
+        ProductServiceUpdating {
 
     private final ProductRepository productRepository;
 
@@ -49,4 +54,15 @@ public class ProductServiceImpl implements ProductServiceReading, ProductService
                     productDTORequest
             ));
     }
+
+    @Override
+    public void restock(ProductRestockRequest productRestockRequest) {
+        Product product = productRepository.findById(productRestockRequest.getProductId())
+                .orElseThrow(() -> new ResourceNotFoundException("Not found Product for id: " + productRestockRequest.getProductId()));
+
+        product.modifyStock(productRestockRequest.getAmount());
+
+        productRepository.save(product);
+    }
+
 }

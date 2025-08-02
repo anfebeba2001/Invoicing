@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -35,4 +36,20 @@ public class Product {
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    public void modifyStock(int amount) {
+        if (amount == 0)
+            throw new IllegalArgumentException("Amount to buy/restock must be different than zero");
+
+        if (amount < 0 && amountInStock < amount)
+            throw new IllegalArgumentException("Amount to buy is greater than the amount on stock");
+
+        if (amount > 1000)
+            throw new IllegalArgumentException("Amount to restock is way to big, max is 1000");
+
+        this.amountInStock += amount;
+    }
+
+
+
 }
