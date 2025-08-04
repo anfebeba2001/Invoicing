@@ -15,30 +15,24 @@
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
         }
-
         ::-webkit-scrollbar {
             width: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
-
         ::-webkit-scrollbar-thumb {
             background: #888;
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
-
         .modal {
             visibility: hidden;
             opacity: 0;
             transition: opacity 0.3s ease, visibility 0s linear 0.3s;
         }
-
         .modal.is-active {
             visibility: visible;
             opacity: 1;
@@ -172,7 +166,18 @@
         const App = {
             state: { sales: [], availableProducts: [] },
             validation: {
-                isAlphaWithSpaces(value, fieldName) { if (!/^[A-Za-z\s]+$/.test(value)) { throw new Error(`${fieldName} must contain only letters and spaces.`); } return value; },
+                isAlphaWithSpaces(value, fieldName) {
+                    if (!/^[A-Za-z\s]+$/.test(value)) {
+                        throw new Error(`${fieldName} must contain only letters and spaces.`);
+                    }
+                    if (value.length < 8) {
+                        throw new Error(`${fieldName} must be at least 8 characters long.`);
+                    }
+                    if (value.length > 20) {
+                        throw new Error(`${fieldName} must be no more than 20 characters long.`);
+                    }
+                    return value;
+                },
                 isPositiveNumber(value, fieldName) { const num = Number(value); if (isNaN(num) || num < 0) { throw new Error(`${fieldName} must be a non-negative number.`); } return num; },
                 isStrictlyPositiveNumber(value, fieldName) { const num = Number(value); if (isNaN(num) || num <= 0) { throw new Error(`${fieldName} must be a positive number.`); } return num; }
             },
@@ -265,13 +270,8 @@
             },
             async initData() {
                 const [sales, products] = await Promise.all([this.api.fetchData('sales'), this.api.fetchData('products')]);
-                
-                // *** INICIO: CAMBIO PARA ORDENAR LOS REGISTROS ***
-                // Se usa .reverse() para mostrar los elementos más nuevos primero.
                 this.state.sales = sales.reverse();
                 this.state.availableProducts = products.reverse();
-                // *** FIN: CAMBIO PARA ORDENAR LOS REGISTROS ***
-                
                 this.ui.renderTable(this.ui.elements.salesTableBody, this.state.sales, this.components.createSaleRow, 'No sales found.');
                 this.ui.renderTable(this.ui.elements.productsTableBody, this.state.availableProducts, this.components.createProductRow, 'No products found.');
             },
