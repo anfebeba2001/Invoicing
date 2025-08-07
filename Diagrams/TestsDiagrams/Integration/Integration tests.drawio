@@ -1,0 +1,608 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:141.0) Gecko/20100101 Firefox/141.0" version="28.0.7">
+  <diagram name="Página-1" id="WzBlQJRWlnCyaqbzn454">
+    <mxGraphModel dx="1535" dy="689" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="1m_2Q1KDiTQwVliKWG0u-3" target="1m_2Q1KDiTQwVliKWG0u-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="440.4000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-3" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="428.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="1m_2Q1KDiTQwVliKWG0u-7" target="1m_2Q1KDiTQwVliKWG0u-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-7" value="&lt;div align=&quot;left&quot;&gt;POST REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&lt;br&gt;&lt;br&gt;With JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;name&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;manufacturer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;amountInStock&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;price&quot;: int&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="364" width="224" height="189.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-15" value="&lt;div align=&quot;left&quot;&gt;Response status 201 Created&lt;br&gt;&lt;br&gt;With JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&quot;Product Successfully Created&quot;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="395.25" width="237" height="127" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="1m_2Q1KDiTQwVliKWG0u-22" target="1m_2Q1KDiTQwVliKWG0u-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="632" as="sourcePoint" />
+            <mxPoint x="40" y="457" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="585" />
+              <mxPoint x="-27" y="585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-22" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Generate name with random &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;number to avoid repeated&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;infoException&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-193" y="637" width="265" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-25" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is  201&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. response.Message is &quot;Produc successfully created&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="638" width="392" height="101" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="1m_2Q1KDiTQwVliKWG0u-15" target="1m_2Q1KDiTQwVliKWG0u-25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="647" as="sourcePoint" />
+            <mxPoint x="-17" y="564" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="570" />
+              <mxPoint x="338" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-28" target="1m_2Q1KDiTQwVliKWG0u-31" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="367" y="953.4000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-28" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="115" y="941.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-30" target="1m_2Q1KDiTQwVliKWG0u-28" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-30" value="&lt;div align=&quot;left&quot;&gt;POST REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&lt;br&gt;&lt;br&gt;With JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;name&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;manufacturer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;amountInStock&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;price&quot;: int&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-198" y="877" width="224" height="189.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-31" value="&lt;div align=&quot;left&quot;&gt;Response status 400 Bad request&lt;br&gt;&lt;br&gt;With JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;error... RepeatedDataRequestException&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&quot;Product already exists&quot;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="328" y="908.25" width="294" height="127" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-33" target="1m_2Q1KDiTQwVliKWG0u-30" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="86.51724137931046" y="1145" as="sourcePoint" />
+            <mxPoint x="70" y="970" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3" y="1098" />
+              <mxPoint x="3" y="1098" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-33" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Make Sure name is already on db&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-203" y="1151" width="303" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-34" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is  400&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. response.Message is &quot;Product already exists&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="323" y="1151" width="392" height="106" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-31" target="1m_2Q1KDiTQwVliKWG0u-34" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="13" y="1160" as="sourcePoint" />
+            <mxPoint x="13" y="1077" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="368" y="1083" />
+              <mxPoint x="368" y="1083" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-37" value="Create Product - success&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-161" y="269" width="318" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-38" value="Create Product - Repeated Request Error&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-164" y="812" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-40" target="1m_2Q1KDiTQwVliKWG0u-43" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="372" y="1476.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-40" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1464.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-42" target="1m_2Q1KDiTQwVliKWG0u-40" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-42" value="&lt;div align=&quot;left&quot;&gt;GET REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-193" y="1451" width="224" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-43" value="&lt;div align=&quot;left&quot;&gt;Response status 200 OK&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; : LIst : [&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;id&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;name&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;manufacturer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;price&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;amountInStock&quot;: int ....&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; }&lt;br&gt;],&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="333" y="1413" width="337.41" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-45" target="1m_2Q1KDiTQwVliKWG0u-42" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="91.51724137931046" y="1668" as="sourcePoint" />
+            <mxPoint x="75" y="1493" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="8" y="1621" />
+              <mxPoint x="8" y="1621" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-45" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-193" y="1674" width="303" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-46" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 200&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. response.body is an array&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="328" y="1674" width="392" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-43" target="1m_2Q1KDiTQwVliKWG0u-46" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="18" y="1683" as="sourcePoint" />
+            <mxPoint x="18" y="1600" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="373" y="1606" />
+              <mxPoint x="373" y="1606" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-48" value="Get all products - Success" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-159" y="1335" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-50" target="1m_2Q1KDiTQwVliKWG0u-53" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="2044.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-50" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="2032.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-52" target="1m_2Q1KDiTQwVliKWG0u-50" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-52" value="&lt;div align=&quot;left&quot;&gt;GET REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products{id}&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="2019" width="224" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-53" value="&lt;div align=&quot;left&quot;&gt;Response status 200 OK&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;:[&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;id&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;name&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;manufacturer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;price&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;amountInStock&quot;: int ....&amp;nbsp;&amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; }&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="1981" width="337.41" height="164" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-55" target="1m_2Q1KDiTQwVliKWG0u-52" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="2236" as="sourcePoint" />
+            <mxPoint x="40" y="2061" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="2189" />
+              <mxPoint x="-27" y="2189" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-55" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Prepare an id that exists on db&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="2242" width="303" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-56" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 200&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. response.body is a  valid JSON resposne&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;3. Product has name ...&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="2242" width="392" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-53" target="1m_2Q1KDiTQwVliKWG0u-56" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="2251" as="sourcePoint" />
+            <mxPoint x="-17" y="2168" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="2174" />
+              <mxPoint x="338" y="2174" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-58" value="Get One product - Success" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="1903" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-60" target="1m_2Q1KDiTQwVliKWG0u-63" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="2628.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-60" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="2616.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-62" target="1m_2Q1KDiTQwVliKWG0u-60" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-62" value="&lt;div align=&quot;left&quot;&gt;GET REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products{id}&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="2603" width="224" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-63" value="&lt;div align=&quot;left&quot;&gt;Response status 404 Not found&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;:&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;error&lt;/span&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; }&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="2587" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-65" target="1m_2Q1KDiTQwVliKWG0u-62" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="2820" as="sourcePoint" />
+            <mxPoint x="40" y="2645" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="2773" />
+              <mxPoint x="-27" y="2773" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-65" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Prepare an id that does not exists on db&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="2826" width="342" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-66" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 404&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Error.message indicates resource was not found&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="2826" width="392" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-63" target="1m_2Q1KDiTQwVliKWG0u-66" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="2835" as="sourcePoint" />
+            <mxPoint x="-17" y="2752" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="2758" />
+              <mxPoint x="338" y="2758" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-68" value="Get One product - Not found" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="2487" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-71" target="1m_2Q1KDiTQwVliKWG0u-74" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="3156.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-71" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="3144.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-73" target="1m_2Q1KDiTQwVliKWG0u-71" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-73" value="&lt;div align=&quot;left&quot;&gt;PATCH REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;productId&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;amount&quot;: int&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="3099" width="224" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-74" value="&lt;div align=&quot;left&quot;&gt;Response status 200 OK&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;Product Successfully Restocked&quot;&lt;br&gt;&amp;nbsp; &amp;nbsp; }&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="3115" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-76" target="1m_2Q1KDiTQwVliKWG0u-73" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="3348" as="sourcePoint" />
+            <mxPoint x="40" y="3173" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="3301" />
+              <mxPoint x="-27" y="3301" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-76" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.Prepare an id that  exists on db&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Prepare an amount that is not way too big&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;3. Prepare an amount that is not negative&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="3354" width="376" height="119" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-77" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 200&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Response body is correct&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="3354" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-74" target="1m_2Q1KDiTQwVliKWG0u-77" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="3363" as="sourcePoint" />
+            <mxPoint x="-17" y="3280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="3286" />
+              <mxPoint x="338" y="3286" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-79" value="Restock product - Sucess&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="3015" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-80" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-81" target="1m_2Q1KDiTQwVliKWG0u-84" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="3698.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-81" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="3686.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-83" target="1m_2Q1KDiTQwVliKWG0u-81" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-83" value="&lt;div align=&quot;left&quot;&gt;PATCH REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;productId&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;amount&quot;: int&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="3641" width="224" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-84" value="&lt;div align=&quot;left&quot;&gt;Response status 404 not found&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;error&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="3657" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-86" target="1m_2Q1KDiTQwVliKWG0u-83" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="3890" as="sourcePoint" />
+            <mxPoint x="40" y="3715" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="3843" />
+              <mxPoint x="-27" y="3843" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-86" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.Prepare an id that don&#39;t exists on db&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="3896" width="376" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-87" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 404&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Error.title = ResourceNotFound&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="3896" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-84" target="1m_2Q1KDiTQwVliKWG0u-87" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="3905" as="sourcePoint" />
+            <mxPoint x="-17" y="3822" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="3828" />
+              <mxPoint x="338" y="3828" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-89" value="Restock product - Not found&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="3557" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-99" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-100" target="1m_2Q1KDiTQwVliKWG0u-103" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="4286.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-100" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="4274.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-102" target="1m_2Q1KDiTQwVliKWG0u-100" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-102" value="&lt;div align=&quot;left&quot;&gt;PATCH REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;productId&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;amount&quot;: int&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="4229" width="224" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-103" value="&lt;div align=&quot;left&quot;&gt;Response status 400 bad request&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;error&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="4245" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-105" target="1m_2Q1KDiTQwVliKWG0u-102" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="4478" as="sourcePoint" />
+            <mxPoint x="40" y="4303" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="4431" />
+              <mxPoint x="-27" y="4431" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-105" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.Use a request parameter type not as expected&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="4484" width="376" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-106" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 400&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Error.title = Bad request&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="4484" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-103" target="1m_2Q1KDiTQwVliKWG0u-106" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="4493" as="sourcePoint" />
+            <mxPoint x="-17" y="4410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="4416" />
+              <mxPoint x="338" y="4416" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-108" value="Restock product - Wrong parameter type&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="4145" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-110" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-111" target="1m_2Q1KDiTQwVliKWG0u-114" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="4786.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-111" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="4774.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-113" target="1m_2Q1KDiTQwVliKWG0u-111" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-113" value="&lt;div align=&quot;left&quot;&gt;PATCH REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/products&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;productId&quot;: id,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;amount&quot;: int&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="4729" width="224" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-114" value="&lt;div align=&quot;left&quot;&gt;Response status 400 bad request&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;error&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="4745" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-116" target="1m_2Q1KDiTQwVliKWG0u-113" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="4978" as="sourcePoint" />
+            <mxPoint x="40" y="4803" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="4931" />
+              <mxPoint x="-27" y="4931" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-116" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.prepare an id that exists on DB&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. prepare a negative amount to restock&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="4984" width="376" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-117" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 400&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Error.Body = &quot;Amount to restock must be positive&quot;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="4984" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-118" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-114" target="1m_2Q1KDiTQwVliKWG0u-117" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="4993" as="sourcePoint" />
+            <mxPoint x="-17" y="4910" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="4916" />
+              <mxPoint x="338" y="4916" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-119" value="Restock product - Negative amount bad request" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="4645" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-129" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-130" target="1m_2Q1KDiTQwVliKWG0u-133" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="5393.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-130" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="5381.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-132" target="1m_2Q1KDiTQwVliKWG0u-130" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-132" value="&lt;div align=&quot;left&quot;&gt;POST REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/sales&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body{&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;customer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;products&quot;: [&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;productId&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;quantity&quot;: int&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;br&gt;&amp;nbsp; &amp;nbsp; ]&lt;br&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="5311" width="224" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-133" value="&lt;div align=&quot;left&quot;&gt;Response status 201 created&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&quot;Sale Successfully Created&quot;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="5352" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-134" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-135" target="1m_2Q1KDiTQwVliKWG0u-132" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="5585" as="sourcePoint" />
+            <mxPoint x="40" y="5410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="5538" />
+              <mxPoint x="-27" y="5538" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-135" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.prepare a product id that exists on DB&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. prepare an amount smaller that the amount on stock&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-271" y="5591" width="419" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-136" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 201 &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Response body indicates successfully created&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="293" y="5591" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-137" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-133" target="1m_2Q1KDiTQwVliKWG0u-136" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="5600" as="sourcePoint" />
+            <mxPoint x="-17" y="5517" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="5523" />
+              <mxPoint x="338" y="5523" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-138" value="Create sale - Success" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="5252" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-139" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-140" target="1m_2Q1KDiTQwVliKWG0u-143" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="5979.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-140" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="5967.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-141" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-142" target="1m_2Q1KDiTQwVliKWG0u-140" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-142" value="&lt;div align=&quot;left&quot;&gt;POST REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/sales&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body{&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;customer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;products&quot;: [&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;productId&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;quantity&quot;: int&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;br&gt;&amp;nbsp; &amp;nbsp; ]&lt;br&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="5897" width="224" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-143" value="&lt;div align=&quot;left&quot;&gt;Response status 400 bad request&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;blockquote&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;error&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="5938" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-145" target="1m_2Q1KDiTQwVliKWG0u-142" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="6171" as="sourcePoint" />
+            <mxPoint x="40" y="5996" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="6124" />
+              <mxPoint x="-27" y="6124" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-145" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.prepare a product id that exists on DB&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. prepare an amount bigger that the amount on stock&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="6177" width="414" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-146" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 400 &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. error.title = &quot;InsufficientStockException&quot;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;3. error.message = &quot;Insufficient Stock for product&quot;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="276" y="6175" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-147" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-143" target="1m_2Q1KDiTQwVliKWG0u-146" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="6186" as="sourcePoint" />
+            <mxPoint x="-17" y="6103" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="6109" />
+              <mxPoint x="338" y="6109" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-148" value="Create sale - Insufficient Stock error" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="5838" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-149" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-150" target="1m_2Q1KDiTQwVliKWG0u-153" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="6515.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-150" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="85" y="6503.75" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-151" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-152" target="1m_2Q1KDiTQwVliKWG0u-150" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-152" value="&lt;div align=&quot;left&quot;&gt;POST REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/sales&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;JSON body{&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;customer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &quot;products&quot;: [&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;productId&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;quantity&quot;: int&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;br&gt;&amp;nbsp; &amp;nbsp; ]&lt;br&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="6433" width="224" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-153" value="&lt;div align=&quot;left&quot;&gt;Response status 404 not found&lt;br&gt;&lt;br&gt;With JSON body&amp;nbsp; &amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;/div&gt;&lt;blockquote&gt;&lt;div align=&quot;left&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;error&lt;/span&gt;&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;}&lt;/div&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="6474" width="337.41" height="118" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-155" target="1m_2Q1KDiTQwVliKWG0u-152" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="6707" as="sourcePoint" />
+            <mxPoint x="40" y="6532" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="6660" />
+              <mxPoint x="-27" y="6660" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-155" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;1.prepare a product id that don&#39;t exists on DB&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;2. prepare an amount smaller that the amount on stock&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="6713" width="414" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-156" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 404 &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. error.title = &quot;ResourceNotFound&quot;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;3. error.message = &quot;Could not find product&quot;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="276" y="6711" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-153" target="1m_2Q1KDiTQwVliKWG0u-156" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="6722" as="sourcePoint" />
+            <mxPoint x="-17" y="6639" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="6645" />
+              <mxPoint x="338" y="6645" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-158" value="Create sale - Not found product" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="6374" width="470" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-159" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-160" target="1m_2Q1KDiTQwVliKWG0u-163" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="7049.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-160" value="Backend...LocalHost:8080" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="63" y="7073.5" width="179" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-161" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-162" target="1m_2Q1KDiTQwVliKWG0u-160" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-162" value="&lt;div align=&quot;left&quot;&gt;GET REQUEST at ...&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;/v1/api/sales&amp;nbsp;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="-242" y="7069.5" width="224" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-163" value="&lt;div align=&quot;left&quot;&gt;Response status 200 ok&lt;br&gt;&lt;br&gt;With JSON body{&amp;nbsp;&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;LIST :: [&lt;br&gt;&amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;invoiceId&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;customer&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;date&quot;: Date,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;status&quot;: String,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;totalValue&quot;: int,&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;products&quot;: [&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; {&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &quot;name&quot;: String&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; }&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; ]&lt;br&gt;&amp;nbsp; &amp;nbsp; },&lt;br&gt;}&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacing=21;" vertex="1" parent="1">
+          <mxGeometry x="298" y="6951" width="337.41" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-164" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-165" target="1m_2Q1KDiTQwVliKWG0u-162" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="56.51724137931046" y="7241" as="sourcePoint" />
+            <mxPoint x="40" y="7066" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-27" y="7194" />
+              <mxPoint x="-27" y="7194" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-165" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Pre-Request configuration {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;size=41.75862068965529;verticalAlign=top;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-228" y="7247" width="414" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-166" value="&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;Post&lt;/span&gt;-Response configuration&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Assertions...&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;1. Status reponse is 200  &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;2. Response body is an Array&lt;/span&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;}&lt;/div&gt;" style="shape=step;perimeter=stepPerimeter;whiteSpace=wrap;html=1;fixedSize=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="278.41" y="7364" width="392" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="1m_2Q1KDiTQwVliKWG0u-163" target="1m_2Q1KDiTQwVliKWG0u-166" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-17" y="7256" as="sourcePoint" />
+            <mxPoint x="-17" y="7173" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="338" y="7179" />
+              <mxPoint x="338" y="7179" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1m_2Q1KDiTQwVliKWG0u-168" value="Get all Sales - Success" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="-194" y="6908" width="470" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
